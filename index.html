@@ -41,30 +41,66 @@
 
 
     <script>
-        function signup() {
-            var firstName = document.querySelector("#firstName").value;
-            var lastName = document.querySelector("#lastName").value;
-            var email = document.querySelector("#email").value;
-            var firstName = document.querySelector("#password").value;
-            var firstName = document.querySelector("#repeatPassword").value;
 
 
-            axios.post('https://modatabase1.herokuapp.com/signup', {
-                firstName: 'firstName',
-                lastName: ' lastName',
-                email: 'email',
-                password: 'password',
-                repeatPassword: 'repeatPassword'
-            })
-                .then(function (response) {
-                    console.log(response.data);
-                    document.querySelector("#message").innerHTML = response.data.message;
-                })
-                .catch(function (error) {
-                    console.log(error.data);
-                    document.querySelector("#message").innerHTML = error.response.data.message;
-                });
-        }
+
+
+function signup() {
+
+var firstName = document.getElementById('firstName').value;
+var lastName = document.getElementById('lastName').value;
+var email = document.getElementById('email').value;
+var password = document.getElementById('password').value;
+var repeatPassword = document.getElementById('repeatPassword').value;
+if (password !== repeatPassword) {
+    document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
+    return;
+}
+
+axios.post ('https://modatabase1.herokuapp.com/signup', {
+    firstName,
+    lastName,
+    email,
+    password,
+})
+
+
+.then(function (response) {
+        console.log(response.data);
+        document.querySelector("#message").innerHTML = response.data.message;
+        alert(response.data.message)
+    })
+    
+    .catch(function (error) {
+        console.log(error.response.data);
+        document.querySelector("#message").innerHTML = error.response.data.message;
+        alert(error.response.data.message)
+    });
+}
+        // function signup() {
+        //     var firstName = document.querySelector("#firstName").value;
+        //     var lastName = document.querySelector("#lastName").value;
+        //     var email = document.querySelector("#email").value;
+        //     var firstName = document.querySelector("#password").value;
+        //     var firstName = document.querySelector("#repeatPassword").value;
+
+
+        //     axios.post('https://modatabase1.herokuapp.com/signup', {
+        //         firstName: 'firstName',
+        //         lastName: ' lastName',
+        //         email: 'email',
+        //         password: 'password',
+        //         repeatPassword: 'repeatPassword'
+        //     })
+        //         .then(function (response) {
+        //             console.log(response.data);
+        //             document.querySelector("#message").innerHTML = response.data.message;
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error.data);
+        //             document.querySelector("#message").innerHTML = error.response.data.message;
+        //         });
+        // }
     </script>
 </body>
 
