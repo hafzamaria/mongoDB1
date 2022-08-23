@@ -57,7 +57,7 @@ if (password !== repeatPassword) {
     return;
 }
 
-axios.post ('https://modatabase1.herokuapp.com/signup', {
+axios.post ('https://dashboard.heroku.com/apps/modatabase1/deploy/github/signup', {
     firstName,
     lastName,
     email,
