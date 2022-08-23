@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>MongooDB1</title>
+</head>
+
+<body>
+    <h1>SignUp</h1>
+    <form onsubmit="signup(); return false">
+
+        <label for="firstName">FirstName:</label>
+        <input type="text" id="firstName">
+        <br>
+        <br>
+        <label for="lastName">LastName:</label>
+        <input type="text" id="lastName">
+        <br>
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" id="email">
+        <br>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <br>
+        <br>
+        <label for="repeatPassword">RepeatPassword:</label>
+        <input type="repeatPassword" id="repeatPassword">
+        <br>
+        <br>
+    </form>
+
+    <p id="message"></p>
+
+
+
+    <script>
+        function signup() {
+            var firstName = document.querySelector("#firstName").value;
+            var lastName = document.querySelector("#lastName").value;
+            var email = document.querySelector("#email").value;
+            var firstName = document.querySelector("#password").value;
+            var firstName = document.querySelector("#repeatPassword").value;
+
+
+            axios.post('', {
+                firstName: 'firstName',
+                lastName: ' lastName',
+                email: 'email',
+                password: 'password',
+                repeatPassword: 'repeatPassword'
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    document.querySelector("#message").innerHTML = response.data.message;
+                })
+                .catch(function (error) {
+                    console.log(error.data);
+                    document.querySelector("#message").innerHTML = error.response.data.message;
+                });
+        }
+    </script>
+</body>
+
+</html>
