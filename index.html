@@ -56,38 +56,74 @@
     
         <script>
     
-            function signup() {
+
+    function signup() {
+
+var firstName = document.getElementById('firstName').value;
+var lastName = document.getElementById('lastName').value;
+var email = document.getElementById('email').value;
+var password = document.getElementById('password').value;
+var repeatPassword = document.getElementById('repeatPassword').value;
+if (password !== repeatPassword) {
+    document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
+    return;
+}
+
+axios.post ('http://localhost:3000/signup', {
+    firstName,
+    lastName,
+    email,
+    password,
+})
+
+
+.then(function (response) {
+        console.log(response.data);
+        document.querySelector("#message").innerHTML = response.data.message;
+        alert(response.data.message)
+    })
     
-                var firstName = document.getElementById('firstName').value;
-                var lastName = document.getElementById('lastName').value;
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
-                var repeatPassword = document.getElementById('repeatPassword').value;
+    .catch(function (error) {
+        console.log(error.response.data);
+        document.querySelector("#message").innerHTML = error.response.data.message;
+        alert(error.response.data.message)
+    });
+}
+
+
+
+            // function signup() {
     
-                if (password !== repeatPassword) {
-                    document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
-                    return;
-                }
+            //     var firstName = document.getElementById('firstName').value;
+            //     var lastName = document.getElementById('lastName').value;
+            //     var email = document.getElementById('email').value;
+            //     var password = document.getElementById('password').value;
+            //     var repeatPassword = document.getElementById('repeatPassword').value;
     
-                // axios.post('https://mongodatabase1.herokuapp.com/signup', {
+            //     if (password !== repeatPassword) {
+            //         document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
+            //         return;
+            //     }
+    
+            //     // axios.post('https://mongodatabase1.herokuapp.com/signup', {
                     
-            axios.post ('http://localhost:3000/signup', {
+            // axios.post ('http://localhost:3000/signup', {
     
-                    firstName,
-                    lastName,
-                    email,
-                    password,
+            //         firstName,
+            //         lastName,
+            //         email,
+            //         password,
     
-                })
-                    .then(function (response) {
-                        console.log(response.data);
-                        document.querySelector("#message").innerHTML = response.data.message;
-                    })
-                    .catch(function (error) {
-                        console.log(error.response.data);
-                        document.querySelector("#message").innerHTML = error.response.data.message;
-                    });
-            }
+            //     })
+            //         .then(function (response) {
+            //             console.log(response.data);
+            //             document.querySelector("#message").innerHTML = response.data.message;
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error.response.data);
+            //             document.querySelector("#message").innerHTML = error.response.data.message;
+            //         });
+            // }
     
     
           
