@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   createdOn: { type: Date, default: Date.now }, //go to schema type (ctrl+f)typt on box date now & copy///
 });
 
-const userModel = mongoose.model('User', userSchema);
+const userModel = mongoose.model('User1', userSchema);
 
 /////hm jtni b cheze database mai save karege sbke liye schema & model bnana hoga////
 
@@ -50,7 +50,7 @@ app.post("/signup", (req, res) => {
 
   //////step04//////
   let dbURI = 'mongodb+srv://abcd:abcd@cluster0.0nsp7aq.mongodb.net/socialmrdiaBase?retryWrites=true&w=majority';
-  // mongoose.connect(dbURI);
+  mongoose.connect(dbURI);
   // check if user already exist // query email user
   userModel.findOne({ email: body.email }, (err, data) => {
       if (!err) {
