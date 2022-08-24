@@ -67,7 +67,7 @@ app.post  ("/signup",(req,res) => {
             return;
             /////step05 (user not exist)Create newUser///
         }else{
-            let newUser = new userModel
+            let newUser1 = new userModel
             ({
                 firstName:body.firstName,
                 lastName:body.lastName,
@@ -76,7 +76,7 @@ app.post  ("/signup",(req,res) => {
 
                 ////step06(save newuser)///
 
-                newUser.save( (err,result) => {
+                newUser1.save( (err,result) => {
          if(!err){
             console.log("data saved:",result);
             res.status(201).send({message:"user is created"});
