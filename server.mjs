@@ -13,7 +13,7 @@ app.use(cors());
 
 ///step01 (schema) stamp for making multile users//
 
-const userSchema = new mongoose.Schema (
+const user1Schema = new mongoose.Schema (
  {  
     firstName:{type:String},
     lastName:{type:String},
@@ -26,9 +26,10 @@ const userSchema = new mongoose.Schema (
 );
 
 /////step02(mongoose model)///
+
 let dbURI = 'mongodb+srv://abcd:abcd@cluster0.0nsp7aq.mongodb.net/socialmrdiaBase?retryWrites=true&w=majority';
 mongoose.connect(dbURI);
-const userModel = mongoose.model ( 'user1', userSchema );
+const user1Model = mongoose.model ( 'user1', user1Schema );
 
 /////step03 (validations/Requirements for submission)////
 
@@ -55,7 +56,7 @@ const userModel = mongoose.model ( 'user1', userSchema );
 
        ////step04(check if user already exist)////
        let isFound = false;
-       userModel.findOne ( {email:body.email},(err,data)  =>  {
+       user1Model.findOne ( {email:body.email},(err,data)  =>  {
        if(!err){
         
         console.log("data:", data);
@@ -67,7 +68,7 @@ const userModel = mongoose.model ( 'user1', userSchema );
             return;
             /////step05 (user not exist)Create newUser///
         }else{
-            let newUser1 = new userModel
+            let newUser1 = new user1Model
             ({
                 firstName:body.firstName,
                 lastName:body.lastName,
