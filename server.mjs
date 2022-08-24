@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import mongoose from 'mongoose';
 
 const port =process.env.PORT || 3000;
-const app = express()
+const app = express();
 
 app.use(express.json());
 app.use(cors());
@@ -32,7 +32,7 @@ const userModel = mongoose.model ( 'user1', userSchema );
 
 /////step03 (validations/Requirements for submission)////
 
-app.post  ("/signup",(req,res) => {
+   app.post ("/signup",( req , res) => {
   
     let body = req.body;
 
