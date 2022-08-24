@@ -76,7 +76,7 @@ const user1Model = mongoose.model ( 'user1', userSchema );
 
                 ////step06(save newuser)///
 
-                newUser1.save( (err,result) => {
+                newUser.save( (err,result) => {
          if(!err){
             console.log("data saved:",result);
             res.status(201).send({message:"user is created"});
