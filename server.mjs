@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema (
 
 let dbURI = 'mongodb+srv://abcd:abcd@cluster0.0nsp7aq.mongodb.net/socialmrdiaBase?retryWrites=true&w=majority';
 mongoose.connect(dbURI);
-const user1Model = mongoose.model ( 'user1', userSchema );
+const userModel = mongoose.model ( 'user1', userSchema );
 
 /////step03 (validations/Requirements for submission)////
 
@@ -55,7 +55,7 @@ const user1Model = mongoose.model ( 'user1', userSchema );
 
        ////step04(check if user already exist)////
        let isFound = false;
-       user1Model.findOne ( {email:body.email},(err,data)  =>  {
+       userModel.findOne ( {email:body.email},(err,data)  =>  {
        if(!err){
         
         console.log("data:", data);
@@ -67,7 +67,7 @@ const user1Model = mongoose.model ( 'user1', userSchema );
             return;
             /////step05 (user not exist)Create newUser///
         }else{
-            let newUser = new user1Model
+            let newUser = new userModel
             ({
                 firstName:body.firstName,
                 lastName:body.lastName,
