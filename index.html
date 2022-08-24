@@ -1,6 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    </head>
+    
+    <body>
+        <div class="main">
+    
+            <div class="start">
+        <h1>Signup Form</h1>
+        <p class="para">please fill in this form to create an account!</p>
+       </div>
+    
+        <form onsubmit="signup(); return false ">
+            <div class="names">
+            <label for="firstName"></label>
+            <input type="text" id="firstName" placeholder="FirstName:" required>
+            <br>
+    
+            <label for="lastName"></label>
+            <input type="text" id="lastName" placeholder="LastName:" required>
+            <br>
+          </div>
+            <label for="email"></label>
+            <input class="in1" type="email" id="email" placeholder="Email:" required>
+            <br>
+    
+            <label for="password"></label>
+            <input class="in1" type="password" id="password" placeholder="Password:" required>
+            <br>
+    
+            <label for="repeatPassword"></label>
+            <input class="in1" type="password" id="repeatPassword" placeholder="Confirm Password:" required>
+            <br>
+            <button class="but" type="submit">signup</button>
+            <!-- <input type="submit" value="Signup"> -->
+        </form>
+    
+        <p id="message"></p>
+    
+    </div>
+    <!-- <div class="link">
+        Already have an account?<a href="./login.html">Login here</a>
+        </div>
+        <br>
+        <br> -->
+    
+    
+        <script>
+    
+            function signup() {
+    
+                var firstName = document.getElementById('firstName').value;
+                var lastName = document.getElementById('lastName').value;
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var repeatPassword = document.getElementById('repeatPassword').value;
+    
+                if (password !== repeatPassword) {
+                    document.querySelector("#message").innerHTML = 'Passwords do not match, please try again';
+                    return;
+                }
+    
+                axios.post('https://mongodatabase1.herokuapp.com/signup', {
+    
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+    
+                })
+                    .then(function (response) {
+                        console.log(response.data);
+                        document.querySelector("#message").innerHTML = response.data.message;
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                        document.querySelector("#message").innerHTML = error.response.data.message;
+                    });
+            }
+    
+    
+          
+        </script>
+    
+    
+    </body>
+    
+    </html>
+
+
+
+
+<!-- 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -105,4 +204,4 @@ if (password !== repeatPassword) {
     </script>
 </body>
 
-</html>
+</html> -->
